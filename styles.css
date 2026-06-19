@@ -1194,6 +1194,13 @@ html.sidebar-preload-collapsed .sidebar {
     height: 10px;
 }
 
+/* Visually separate step lists when sidebar is minimized/collapsed */
+.sidebar.collapsed .sidebar-list ~ .sidebar-list:not(.actions-section) {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 1.25rem;
+    margin-top: 1.5rem;
+}
+
 .sidebar.collapsed .sidebar-footer {
     padding: 1.25rem 0.5rem;
     justify-content: center;
