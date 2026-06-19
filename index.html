@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nordiska Banken - Ärende #482910</title>
+    <!-- Google Fonts & Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <!-- Sidebar Header / Branding -->
+            <div class="sidebar-header">
+                <div class="logo-icon">N</div>
+                <div class="logo-text-wrapper">
+                    <div class="logo-text">Nordiska</div>
+                </div>
+                <button class="sidebar-toggle-btn" id="btn-toggle-sidebar" title="Minimera meny">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+            </div>
+
+            <!-- Active Case Widget -->
+            <div class="sidebar-case-summary">
+                <div class="case-label">Aktivt Ärende</div>
+                <div class="case-id">
+                    #482910
+                    <button class="copy-btn" id="btn-copy-case-id" title="Kopiera ärendenummer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                    </button>
+                </div>
+                <div class="customer-name">Johan Andersson</div>
+                <div class="loan-amount">3 450 000 SEK</div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <nav class="sidebar-menu">
+                <div class="menu-section-title">Huvudmeny</div>
+                <ul class="sidebar-list">
+                    <li>
+                        <a href="index.html" class="sidebar-link active" data-title="Översikt">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                            </span>
+                            Översikt
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="menu-section-title" style="margin-top: 1.5rem;">Ärendesteg</div>
+                <ul class="sidebar-list">
+                    <li>
+                        <a href="kundinformation.html" class="sidebar-link" data-title="Kundinformation">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            </span>
+                            Kundinformation
+                            <span class="step-status-icon" title="Klar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="laneansokan.html" class="sidebar-link" data-title="Låneansökan">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            </span>
+                            Låneansökan
+                            <span class="step-status-icon" title="Klar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="engagemang.html" class="sidebar-link" data-title="Engagemang">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </span>
+                            Engagemang
+                            <span class="step-status-icon" title="Klar">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="policykontroll-1.html" class="sidebar-link" data-title="Policykontroll 1">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </span>
+                            Policykontroll 1
+                            <span class="step-status-icon" title="Pågår">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="sakerheter.html" class="sidebar-link" data-title="Säkerheter">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            </span>
+                            Säkerheter
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="policykontroll-2.html" class="sidebar-link" data-title="Policykontroll 2">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            </span>
+                            Policykontroll 2
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="uppsummering-och-risk.html" class="sidebar-link" data-title="Uppsummering och risk">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><line x1="9" y1="12" x2="15" y2="12"></line><line x1="9" y1="16" x2="15" y2="16"></line><line x1="9" y1="8" x2="10" y2="8"></line></svg>
+                            </span>
+                            Uppsummering och risk
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="beslut.html" class="sidebar-link" data-title="Beslut">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                            </span>
+                            Beslut
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="dokument.html" class="sidebar-link" data-title="Dokument">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                            </span>
+                            Dokument
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="avslut.html" class="sidebar-link" data-title="Avslut">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            </span>
+                            Avslut
+                            <span class="step-status-icon" title="Ej påbörjad">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--text-light)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="sidebar-list actions-section">
+                    <li>
+                        <a href="#" class="sidebar-link sidebar-dropdown-toggle" id="toggle-actions-menu" data-title="Åtgärder">
+                            <span class="step-icon-wrapper">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M3 12h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m11.4 11.4l.7.7m0-12.8l-.7.7M6.3 17.7l-.7.7"/></svg>
+                            </span>
+                            Åtgärder
+                            <span class="dropdown-chevron">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                            </span>
+                        </a>
+                        <ul class="sidebar-submenu" id="actions-submenu">
+                            <li>
+                                <a href="#" class="sidebar-link sidebar-action-link action-update" id="action-update-eng" data-title="Uppdatera engagemang">
+                                    <span class="step-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                                    </span>
+                                    Uppdatera engagemang
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link sidebar-action-link action-archive" id="action-archive-case" data-title="Arkivera ärende">
+                                    <span class="step-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                                    </span>
+                                    Arkivera ärende
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link sidebar-action-link action-unarchive" id="action-unarchive-case" data-title="Delarkivera ärende">
+                                    <span class="step-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4M12 12v6"/></svg>
+                                    </span>
+                                    Delarkivera ärende
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebar-link sidebar-action-link action-reject" id="action-reject-case" data-title="Avslå ärende">
+                                    <span class="step-icon-wrapper">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                                    </span>
+                                    Avslå ärende
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Sidebar User Profile Footer -->
+            <div class="sidebar-footer">
+                <div class="user-avatar">EB</div>
+                <div class="user-info">
+                    <span class="user-name">Erik Bergström</span>
+                    <span class="user-role">Handläggare</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Viewport Area -->
+        <main class="main-viewport">
+            <!-- Sticky Case Header -->
+            <header class="case-top-header">
+                <div class="header-left">
+                    <div class="breadcrumbs">
+                        <a href="#">Ärenden</a>
+                        <span class="separator">/</span>
+                        <span class="current">Ärende #482910</span>
+                    </div>
+                    <div class="case-title-row">
+                        <h1>Ärendeöversikt</h1>
+                        <span class="status-pill under-review">
+                            <span class="status-indicator-dot"></span>
+                            Under utredning
+                        </span>
+                    </div>
+                </div>
+                <!-- Action Controls -->
+                <div class="header-actions">
+                </div>
+            </header>
+
+            <!-- Scrollable Dashboard Grid -->
+            <div class="dashboard-grid">
+                
+                <!-- STEPPER OVERVIEW (Full Width) -->
+                <div class="dashboard-card col-12">
+                    <div class="card-header" style="margin-bottom: 0.75rem; padding-bottom: 0.5rem;">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            Processförlopp
+                        </div>
+                        <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Steg 4 av 10 pågår</span>
+                    </div>
+                    
+                    <div class="flow-stepper-wrapper">
+                        <div class="flow-stepper">
+                            <!-- Step 1 -->
+                            <div class="flow-step-node completed">
+                                <div class="flow-step-bubble">1</div>
+                                <div class="flow-step-label">Kundinfo</div>
+                                <div class="flow-step-status-text">Klar</div>
+                            </div>
+                            <!-- Step 2 -->
+                            <div class="flow-step-node completed">
+                                <div class="flow-step-bubble">2</div>
+                                <div class="flow-step-label">Låneansökan</div>
+                                <div class="flow-step-status-text">Klar</div>
+                            </div>
+                            <!-- Step 3 -->
+                            <div class="flow-step-node completed">
+                                <div class="flow-step-bubble">3</div>
+                                <div class="flow-step-label">Engagemang</div>
+                                <div class="flow-step-status-text">Klar</div>
+                            </div>
+                            <!-- Step 4 -->
+                            <div class="flow-step-node active">
+                                <div class="flow-step-bubble">4</div>
+                                <div class="flow-step-label">Policykontroll 1</div>
+                                <div class="flow-step-status-text">Pågår</div>
+                            </div>
+                            <!-- Step 5 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">5</div>
+                                <div class="flow-step-label">Säkerheter</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                            <!-- Step 6 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">6</div>
+                                <div class="flow-step-label">Policykontroll 2</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                            <!-- Step 7 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">7</div>
+                                <div class="flow-step-label">Risk &amp; Uppsum.</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                            <!-- Step 8 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">8</div>
+                                <div class="flow-step-label">Beslut</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                            <!-- Step 9 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">9</div>
+                                <div class="flow-step-label">Dokument</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                            <!-- Step 10 -->
+                            <div class="flow-step-node">
+                                <div class="flow-step-bubble">10</div>
+                                <div class="flow-step-label">Avslut</div>
+                                <div class="flow-step-status-text">Väntar</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CUSTOMER SUMMARY CARD -->
+                <div class="dashboard-card col-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            Kundinformation
+                        </div>
+                        <a href="kundinformation.html" class="btn btn-secondary" style="padding: 0.35rem 0.6rem; font-size: 0.72rem; border-radius: var(--radius-sm);">Visa detaljer</a>
+                    </div>
+                    <div class="customer-detail-list">
+                        <div class="detail-item" style="grid-column: span 2;">
+                            <span class="detail-label">Huvudsökande</span>
+                            <span class="detail-value" style="font-size: 1.05rem; color: var(--primary-dark);">Johan Andersson</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Personnummer</span>
+                            <span class="detail-value">
+                                19820412-2398
+                                <button class="copy-btn" id="btn-copy-ssn" title="Kopiera personnummer">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                </button>
+                            </span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Telefon</span>
+                            <span class="detail-value">070-123 45 67</span>
+                        </div>
+                        <div class="detail-item" style="grid-column: span 2;">
+                            <span class="detail-label">E-post</span>
+                            <span class="detail-value">johan.andersson@outlook.se</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Sysselsättning</span>
+                            <span class="detail-value">Tillsvidareanställd</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Årsinkomst</span>
+                            <span class="detail-value highlight">580 000 SEK</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Medsökande</span>
+                            <span class="detail-value">Nej (Ensam sökande)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Kreditscore (UC)</span>
+                            <span class="detail-value" style="color: var(--success);">1.2 (Mycket bra)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOAN SUMMARY CARD -->
+                <div class="dashboard-card col-8">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            Låneansökan & Kalkyl
+                        </div>
+                        <a href="laneansokan.html" class="btn btn-secondary" style="padding: 0.35rem 0.6rem; font-size: 0.72rem; border-radius: var(--radius-sm);">Ändra ansökan</a>
+                    </div>
+                    <div class="loan-summary-grid">
+                        <div class="customer-detail-list">
+                            <div class="detail-item">
+                                <span class="detail-label">Lånetyp</span>
+                                <span class="detail-value">Bostadsrättslån</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Syfte</span>
+                                <span class="detail-value">Köpa bostad</span>
+                            </div>
+                            <div class="detail-item" style="grid-column: span 2;">
+                                <span class="detail-label">Sökt Lånebelopp</span>
+                                <span class="detail-value" style="font-size: 1.2rem; color: var(--primary-dark); font-weight: 700;">
+                                    3 450 000 SEK
+                                    <button class="copy-btn" id="btn-copy-amount" title="Kopiera belopp">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Köpeskilling</span>
+                                <span class="detail-value">4 200 000 SEK</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Kontantinsats</span>
+                                <span class="detail-value">750 000 SEK (17.9%)</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Räntesats (Rörlig)</span>
+                                <span class="detail-value">4.15%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Amorteringstakt</span>
+                                <span class="detail-value">2.0% per år</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Financial Progress Indicators -->
+                        <div class="loan-metrics">
+                            <!-- Metric 1 -->
+                            <div class="metric-bar-group">
+                                <div class="metric-header">
+                                    <span class="detail-label">Belåningsgrad (LTV)</span>
+                                    <span class="detail-value">82.1%</span>
+                                </div>
+                                <div class="metric-bar-container" title="Maxgräns 85% för bolån">
+                                    <div class="metric-bar-fill warning" style="width: 82.1%;"></div>
+                                    <div class="metric-marker" style="left: 85%;" title="Maxgräns 85%"></div>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-light); font-weight: 500;">
+                                    <span>0%</span>
+                                    <span style="color: var(--warning); font-weight: 600;">Gräns: 85%</span>
+                                    <span>100%</span>
+                                </div>
+                            </div>
+                            <!-- Metric 2 -->
+                            <div class="metric-bar-group">
+                                <div class="metric-header">
+                                    <span class="detail-label">Skuldkvot (DTI)</span>
+                                    <span class="detail-value" style="color: var(--danger); font-weight: 700;">5.9x</span>
+                                </div>
+                                <div class="metric-bar-container" title="Riskgräns 5.0x ink-multiplikator">
+                                    <div class="metric-bar-fill danger" style="width: 98.3%;"></div> <!-- 5.9 / 6.0 = 98.3% -->
+                                    <div class="metric-marker" style="left: 83.3%;" title="Riskgräns 5.0x"></div> <!-- 5.0 / 6.0 = 83.3% -->
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-light); font-weight: 500;">
+                                    <span>0.0x</span>
+                                    <span style="color: var(--danger); font-weight: 600;">Riskgräns: 5.0x</span>
+                                    <span>6.0x</span>
+                                </div>
+                            </div>
+                            <!-- Metric 3 -->
+                            <div class="metric-bar-group">
+                                <div class="metric-header">
+                                    <span class="detail-label">Kvarboendekalkyl (KALP)</span>
+                                    <span class="detail-value" style="color: var(--success);">+14 520 SEK / mån</span>
+                                </div>
+                                <div class="metric-bar-container" title="Krav: Minst 8 000 SEK">
+                                    <div class="metric-bar-fill" style="width: 72.6%;"></div> <!-- scale to max 20000 -->
+                                    <div class="metric-marker" style="left: 40%;" title="Krav 8000"></div> <!-- 8000 / 20000 = 40% -->
+                                </div>
+                                <div style="display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--text-light); font-weight: 500;">
+                                    <span>0 SEK</span>
+                                    <span style="color: var(--success); font-weight: 600;">Krav: 8 000 SEK</span>
+                                    <span>20 000 SEK</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POLICY & RISK CARD -->
+                <div class="dashboard-card col-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            Policy & Riskkontroll
+                        </div>
+                        <span class="status-pill under-review" style="padding: 0.15rem 0.5rem; font-size: 0.68rem;">Kontroll Pågår</span>
+                    </div>
+                    <div class="policy-list">
+                        <!-- Policy Item 1 -->
+                        <div class="policy-item passed">
+                            <div>
+                                <div class="policy-name">Kreditupplysning (UC)</div>
+                                <div class="policy-meta">Score 1.2, Inga betalningsanmärkningar</div>
+                            </div>
+                            <div class="policy-status passed">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                OK
+                            </div>
+                        </div>
+                        <!-- Policy Item 2 -->
+                        <div class="policy-item warning">
+                            <div>
+                                <div class="policy-name">Skuldkvot & Kalkyl</div>
+                                <div class="policy-meta">Skuldkvot 5.9x överstiger riskgräns (5.0x)</div>
+                            </div>
+                            <div class="policy-status warning">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                Manuell
+                            </div>
+                        </div>
+                        <!-- Policy Item 3 -->
+                        <div class="policy-item passed">
+                            <div>
+                                <div class="policy-name">PEP & Sanktionskontroll</div>
+                                <div class="policy-meta">Inga träffar funna i internationella register</div>
+                            </div>
+                            <div class="policy-status passed">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                OK
+                            </div>
+                        </div>
+                        <!-- Policy Item 4 -->
+                        <div class="policy-item passed">
+                            <div>
+                                <div class="policy-name">Medborgarskap / Boende</div>
+                                <div class="policy-meta">Svensk medborgare och folkbokförd</div>
+                            </div>
+                            <div class="policy-status passed">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                OK
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLLATERAL CARD -->
+                <div class="dashboard-card col-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            Säkerheter (Bostad)
+                        </div>
+                        <a href="sakerheter.html" class="btn btn-secondary" style="padding: 0.35rem 0.6rem; font-size: 0.72rem; border-radius: var(--radius-sm);">Redigera</a>
+                    </div>
+                    
+                    <div class="collateral-card-content">
+                        <div class="collateral-list-wrapper">
+                            <div class="collateral-item" style="padding-top: 0;">
+                                <div class="collateral-left">
+                                    <div class="collateral-title">Bostadsrätt</div>
+                                    <div class="collateral-desc">Furuallén 14, Stockholm</div>
+                                </div>
+                                <div class="collateral-right">
+                                    <div class="collateral-value">4 200 000 SEK</div>
+                                    <div class="collateral-status">Värderad (Desktop)</div>
+                                </div>
+                            </div>
+                            
+                            <div class="collateral-item">
+                                <div class="collateral-left">
+                                    <div class="collateral-title">Befintliga pantbrev</div>
+                                    <div class="collateral-desc">BRF Tallbarret registers</div>
+                                </div>
+                                <div class="collateral-right">
+                                    <div class="collateral-value" style="color: var(--text-main); font-weight: 500;">3 000 000 SEK</div>
+                                </div>
+                            </div>
+                            
+                            <div class="collateral-item">
+                                <div class="collateral-left">
+                                    <div class="collateral-title">Nya pantbrev som krävs</div>
+                                    <div class="collateral-desc">Ansöks vid beviljande</div>
+                                </div>
+                                <div class="collateral-right">
+                                    <div class="collateral-value" style="color: var(--warning); font-weight: 700;">450 000 SEK</div>
+                                    <div class="collateral-status" style="color: var(--text-muted); font-weight: 500;">Ej ansökta</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick safety indicators -->
+                        <div style="background-color: var(--success-light); border: 1px solid var(--success-border); border-radius: var(--radius-md); padding: 0.75rem 1rem; display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <span style="font-size: 0.78rem; font-weight: 600; color: var(--success-text);">Bostadens värdering godkänd för belåning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ACTIVITY TIMELINE & NOTES CARD -->
+                <div class="dashboard-card col-4">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            Händelselogg & Anteckningar
+                        </div>
+                    </div>
+
+                    <div class="activity-timeline-notes-wrapper">
+                        <!-- Timeline -->
+                        <div class="activity-timeline">
+                            <div class="timeline-item active">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header-row">
+                                        <span class="timeline-title">UC uppdaterad</span>
+                                        <span class="timeline-time">Idag 09:14</span>
+                                    </div>
+                                    <p class="timeline-description">Ny fullständig kreditupplysning inhämtad automatiskt.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header-row">
+                                        <span class="timeline-title">Arbetsgivarintyg mottaget</span>
+                                        <span class="timeline-time">Idag 09:10</span>
+                                    </div>
+                                    <p class="timeline-description">Verifierat anställningstyp och inkomst för huvudsökande.</p>
+                                </div>
+                            </div>
+
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-header-row">
+                                        <span class="timeline-title">Ansökan inskickad</span>
+                                        <span class="timeline-time">Igår 16:45</span>
+                                    </div>
+                                    <p class="timeline-description">Digital ansökan mottagen via externa API-portalen.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Notes Area -->
+                        <div class="notes-area-wrapper">
+                            <span class="detail-label" style="display: block; margin-bottom: 0.5rem;">Handläggarantagande (Korta anteckningar)</span>
+                            <textarea class="quick-notes-textarea" id="txt-notes" placeholder="Skriv anteckningar här..."></textarea>
+                            <div class="quick-notes-save-bar">
+                                <span class="notes-status-text" id="notes-status">Alla anteckningar sparade</span>
+                                <button class="btn btn-primary" id="btn-save-notes" style="padding: 0.35rem 0.75rem; font-size: 0.72rem; border-radius: var(--radius-sm);">Spara</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <!-- Application Footer -->
+            <footer class="app-footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <span>© 2026 Nordiska Banken</span>
+                        <span class="footer-separator">|</span>
+                        <span>Handläggningssystem</span>
+                        <span class="footer-separator">|</span>
+                        <span>Systemversion 2.4.1-prod</span>
+                    </div>
+                    <div class="footer-right">
+                        <a href="#support">Support &amp; Incident</a>
+                        <a href="#help">Lathund &amp; Manualer</a>
+                        <a href="#systemstatus">Systemstatus (OK)</a>
+                    </div>
+                </div>
+            </footer>
+        </main>
+        
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="app.js"></script>
+</body>
+
+</html>
