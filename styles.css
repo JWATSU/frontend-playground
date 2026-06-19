@@ -1105,9 +1105,24 @@ body {
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Suppress transitions on initial page load to prevent FOUC when sidebar is collapsed */
+html.sidebar-preload-collapsed .sidebar,
+html.sidebar-preload-collapsed .sidebar * {
+    transition: none;
+}
+
+html.sidebar-preload-collapsed .sidebar {
+    width: 100px;
+    overflow: hidden;
+}
+
 /* Collapsed state styles for .sidebar */
 .sidebar.collapsed {
     width: 100px; /* Increased from 80px */
+}
+
+.sidebar.collapsed .sidebar-toggle-btn svg {
+    transform: rotate(180deg);
 }
 
 .sidebar.collapsed .sidebar-header {
@@ -1418,8 +1433,9 @@ body {
     transform: rotate(-90deg); /* Point chevron right by default */
 }
 
+.sidebar-list > li:hover .dropdown-chevron,
 .sidebar-dropdown-toggle.active .dropdown-chevron {
-    transform: rotate(90deg); /* Point chevron left or down when active */
+    transform: rotate(90deg); /* Point chevron down when hovered or active */
 }
 
 .sidebar-list > li {
@@ -1458,8 +1474,28 @@ body {
     pointer-events: none;
 }
 
+/* Bridge the 12px gap between sidebar link and submenu on hover */
+.sidebar-submenu::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -15px;
+    width: 15px;
+    background-color: transparent;
+    z-index: -1;
+}
+
+/* Show flyout on hover of the parent li */
+.sidebar-list > li:hover .sidebar-submenu,
 .sidebar-submenu.expanded {
     display: flex;
+}
+
+/* Hover style for dropdown toggle link when parent is hovered */
+.sidebar-list > li:hover .sidebar-dropdown-toggle {
+    color: var(--text-white);
+    background-color: rgba(255, 255, 255, 0.04);
 }
 
 /* Submenu links inside flyout always display text labels fully */

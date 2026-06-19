@@ -1,4 +1,185 @@
-document.addEventListener('DOMContentLoaded', () => {
+/**
+ * Nordiska Banken - Handläggningssystem PoC Core JS
+ * Handles layout fragment loading, sidebar toggle states, note persistence,
+ * and page action simulation.
+ */
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // 1. Fetch and inject common page fragments (sidebar, header, footer)
+    await loadFragments();
+
+    // 2. Remove preload class to re-enable sidebar transitions after first paint
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            document.documentElement.classList.remove('sidebar-preload-collapsed');
+        });
+    });
+
+    // 3. Initialize interactive application behaviors
+    initAppBehaviors();
+});
+
+/**
+ * Loads shared HTML fragments dynamically using memory templates (from components.js)
+ * or falls back to fetch requests if components.js is not loaded.
+ */
+async function loadFragments() {
+    const promises = [];
+
+    // Load Sidebar
+    const sidebarPlaceholder = document.getElementById('sidebar-placeholder');
+    if (sidebarPlaceholder) {
+        const injectSidebar = (html) => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html.trim();
+            const newEl = temp.firstElementChild;
+            
+            if (newEl) {
+                // Apply collapsed class if persistent state is true (prevents FOUC)
+                if (localStorage.getItem('sidebar_collapsed') === 'true') {
+                    newEl.classList.add('collapsed');
+                }
+                
+                // Dynamically highlight active sidebar link based on current page URL
+                const currentPath = window.location.pathname;
+                const pageName = currentPath.substring(currentPath.lastIndexOf('/') + 1) || 'index.html';
+                const links = newEl.querySelectorAll('.sidebar-link');
+                links.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === pageName) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                sidebarPlaceholder.replaceWith(newEl);
+            }
+        };
+
+        if (typeof SIDEBAR_FRAGMENT !== 'undefined') {
+            // Load from memory variables (CORS-safe for file:// protocol)
+            injectSidebar(SIDEBAR_FRAGMENT);
+        } else {
+            // Fallback to fetch (requires a server like http-server or live-server)
+            promises.push(
+                fetch('components/sidebar.html')
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.text();
+                    })
+                    .then(html => injectSidebar(html))
+                    .catch(err => {
+                        console.error('Kunde inte ladda sidomenyn via fetch:', err);
+                        sidebarPlaceholder.innerHTML = `<div style="padding: 1.5rem; color: var(--danger);">Kunde inte ladda sidomenyn. Tryck på en lokal webbserver för att köra PoC.</div>`;
+                    })
+            );
+        }
+    }
+
+    // Load Top Header
+    const headerPlaceholder = document.getElementById('header-placeholder');
+    if (headerPlaceholder) {
+        const injectHeader = (html) => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html.trim();
+            const newEl = temp.firstElementChild;
+            
+            if (newEl) {
+                // Customize title, breadcrumb, and status pill via dataset attributes
+                const title = headerPlaceholder.getAttribute('data-title');
+                const breadcrumb = headerPlaceholder.getAttribute('data-breadcrumb');
+                const statusText = headerPlaceholder.getAttribute('data-status-text');
+                const statusClass = headerPlaceholder.getAttribute('data-status-class');
+                
+                if (title) {
+                    const titleEl = newEl.querySelector('#header-title');
+                    if (titleEl) titleEl.textContent = title;
+                }
+                if (breadcrumb) {
+                    const breadcrumbEl = newEl.querySelector('#header-breadcrumb-current');
+                    if (breadcrumbEl) breadcrumbEl.textContent = breadcrumb;
+                }
+                if (statusText) {
+                    const statusPill = newEl.querySelector('#header-status-pill');
+                    if (statusPill) {
+                        statusPill.innerHTML = `<span class="status-indicator-dot"></span> ${statusText}`;
+                        if (statusClass) {
+                            statusPill.className = `status-pill ${statusClass}`;
+                        }
+                    }
+                }
+                
+                // Copy any page-specific buttons/actions from the placeholder into the header actions container
+                const actionsContainer = newEl.querySelector('#header-actions-container');
+                if (actionsContainer) {
+                    while (headerPlaceholder.firstChild) {
+                        actionsContainer.appendChild(headerPlaceholder.firstChild);
+                    }
+                }
+                
+                headerPlaceholder.replaceWith(newEl);
+            }
+        };
+
+        if (typeof HEADER_FRAGMENT !== 'undefined') {
+            // Load from memory variables (CORS-safe for file:// protocol)
+            injectHeader(HEADER_FRAGMENT);
+        } else {
+            // Fallback to fetch (requires a server like http-server or live-server)
+            promises.push(
+                fetch('components/header.html')
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.text();
+                    })
+                    .then(html => injectHeader(html))
+                    .catch(err => {
+                        console.error('Kunde inte ladda sidhuvudet via fetch:', err);
+                    })
+            );
+        }
+    }
+
+    // Load Footer
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        const injectFooter = (html) => {
+            const temp = document.createElement('div');
+            temp.innerHTML = html.trim();
+            const newEl = temp.firstElementChild;
+            if (newEl) {
+                footerPlaceholder.replaceWith(newEl);
+            }
+        };
+
+        if (typeof FOOTER_FRAGMENT !== 'undefined') {
+            // Load from memory variables (CORS-safe for file:// protocol)
+            injectFooter(FOOTER_FRAGMENT);
+        } else {
+            // Fallback to fetch (requires a server like http-server or live-server)
+            promises.push(
+                fetch('components/footer.html')
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                        return response.text();
+                    })
+                    .then(html => injectFooter(html))
+                    .catch(err => {
+                        console.error('Kunde inte ladda sidfoten via fetch:', err);
+                    })
+            );
+        }
+    }
+
+    await Promise.all(promises);
+}
+
+/**
+ * Binds event listeners and triggers initial state setup for all interactive elements in the DOM.
+ * Runs after fragments are loaded.
+ */
+function initAppBehaviors() {
     // 1. Copy to Clipboard Functionality
     const copyButtons = [
         { id: 'btn-copy-case-id', text: '482910' },
@@ -62,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3. Action Buttons - Pausa, Neka, Gå till Policykontroll
+    // 3. Action Buttons - Pausa, Neka, Gå till Policykontroll (if present on the page)
     const btnPause = document.getElementById('btn-pause-case');
     const btnReject = document.getElementById('btn-reject-case');
     const btnProceed = document.getElementById('btn-proceed');
@@ -119,11 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnToggleSidebar = document.getElementById('btn-toggle-sidebar');
     const sidebar = document.querySelector('.sidebar');
     
-    // Load sidebar state from localStorage
-    const isSidebarCollapsed = localStorage.getItem('sidebar_collapsed') === 'true';
-    if (isSidebarCollapsed && sidebar) {
-        sidebar.classList.add('collapsed');
-        updateToggleIcon(true);
+    // Load sidebar state from localStorage (only run if not already applied by the loader)
+    if (sidebar) {
+        const isSidebarCollapsed = localStorage.getItem('sidebar_collapsed') === 'true';
+        if (isSidebarCollapsed) {
+            sidebar.classList.add('collapsed');
+            updateToggleIcon(true);
+        } else {
+            sidebar.classList.remove('collapsed');
+            updateToggleIcon(false);
+        }
     }
     
     if (btnToggleSidebar && sidebar) {
@@ -136,17 +322,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function updateToggleIcon(collapsed) {
         if (!btnToggleSidebar) return;
-        const iconSvg = btnToggleSidebar.querySelector('svg');
-        if (iconSvg) {
-            if (collapsed) {
-                // Point chevron right
-                iconSvg.style.transform = 'rotate(180deg)';
-                btnToggleSidebar.title = "Expandera meny";
-            } else {
-                // Point chevron left (default)
-                iconSvg.style.transform = '';
-                btnToggleSidebar.title = "Minimera meny";
-            }
+        if (collapsed) {
+            btnToggleSidebar.title = "Expandera meny";
+        } else {
+            btnToggleSidebar.title = "Minimera meny";
         }
     }
 
@@ -246,11 +425,11 @@ document.addEventListener('DOMContentLoaded', () => {
         linkReject.addEventListener('click', (e) => {
             e.preventDefault();
             if (confirm('Är du säker på att du vill avslå detta ärende?')) {
-                const statusPill = document.querySelector('.status-pill');
-                if (statusPill) {
-                    statusPill.className = 'status-pill rejected';
-                    statusPill.style = '';
-                    statusPill.innerHTML = '<span class="status-indicator-dot"></span> Nekad';
+                const statusPillEl = document.querySelector('.status-pill');
+                if (statusPillEl) {
+                    statusPillEl.className = 'status-pill rejected';
+                    statusPillEl.style = '';
+                    statusPillEl.innerHTML = '<span class="status-indicator-dot"></span> Nekad';
                 }
                 showToast('Ärendet har markerats som avslaget/nekat.', 'danger');
             }
@@ -262,13 +441,13 @@ document.addEventListener('DOMContentLoaded', () => {
         linkArchive.addEventListener('click', (e) => {
             e.preventDefault();
             if (confirm('Vill du arkivera detta ärende?')) {
-                const statusPill = document.querySelector('.status-pill');
-                if (statusPill) {
-                    statusPill.className = 'status-pill';
-                    statusPill.style.backgroundColor = 'var(--text-light)';
-                    statusPill.style.color = 'var(--text-white)';
-                    statusPill.style.borderColor = 'var(--border-color)';
-                    statusPill.innerHTML = '<span class="status-indicator-dot" style="background-color: var(--text-white);"></span> Arkiverat';
+                const statusPillEl = document.querySelector('.status-pill');
+                if (statusPillEl) {
+                    statusPillEl.className = 'status-pill';
+                    statusPillEl.style.backgroundColor = 'var(--text-light)';
+                    statusPillEl.style.color = 'var(--text-white)';
+                    statusPillEl.style.borderColor = 'var(--border-color)';
+                    statusPillEl.innerHTML = '<span class="status-indicator-dot" style="background-color: var(--text-white);"></span> Arkiverat';
                 }
                 showToast('Ärendet har arkiverats.', 'info');
             }
@@ -280,44 +459,22 @@ document.addEventListener('DOMContentLoaded', () => {
         linkUnarchive.addEventListener('click', (e) => {
             e.preventDefault();
             if (confirm('Vill du delarkivera detta ärende och återuppta utredningen?')) {
-                const statusPill = document.querySelector('.status-pill');
-                if (statusPill) {
-                    statusPill.className = 'status-pill under-review';
-                    statusPill.style = '';
-                    statusPill.innerHTML = '<span class="status-indicator-dot"></span> Under utredning';
+                const statusPillEl = document.querySelector('.status-pill');
+                if (statusPillEl) {
+                    statusPillEl.className = 'status-pill under-review';
+                    statusPillEl.style = '';
+                    statusPillEl.innerHTML = '<span class="status-indicator-dot"></span> Under utredning';
                 }
                 showToast('Ärendet har delarkiverats och är nu under utredning igen.');
             }
         });
     }
 
-    // 6. Sidebar Actions Submenu Toggle
+    // 6. Sidebar Actions Submenu Hover-only Behavior (Prevent link default click)
     const toggleActionsBtn = document.getElementById('toggle-actions-menu');
-    const actionsSubmenu = document.getElementById('actions-submenu');
-    
-    // Load state from localStorage
-    const isSubmenuExpanded = localStorage.getItem('actions_submenu_expanded') === 'true';
-    if (isSubmenuExpanded && toggleActionsBtn && actionsSubmenu) {
-        toggleActionsBtn.classList.add('active');
-        actionsSubmenu.classList.add('expanded');
-    }
-
-    if (toggleActionsBtn && actionsSubmenu) {
+    if (toggleActionsBtn) {
         toggleActionsBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            e.stopPropagation(); // Prevent immediate body click trigger
-            const expanded = actionsSubmenu.classList.toggle('expanded');
-            toggleActionsBtn.classList.toggle('active', expanded);
-            localStorage.setItem('actions_submenu_expanded', expanded);
-        });
-
-        // Close actions submenu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!toggleActionsBtn.contains(e.target) && !actionsSubmenu.contains(e.target)) {
-                actionsSubmenu.classList.remove('expanded');
-                toggleActionsBtn.classList.remove('active');
-                localStorage.setItem('actions_submenu_expanded', 'false');
-            }
         });
     }
-});
+}
