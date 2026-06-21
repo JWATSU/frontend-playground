@@ -477,4 +477,164 @@ function initAppBehaviors() {
             e.preventDefault();
         });
     }
+
+    // 7. Header Navigation & Close Case
+    const btnPrevStep = document.getElementById('btn-prev-step');
+    const btnNextStep = document.getElementById('btn-next-step');
+    const btnCloseCase = document.getElementById('btn-close-case');
+
+    if (btnCloseCase) {
+        btnCloseCase.addEventListener('click', () => {
+            if (confirm('Vill du lämna ärendet och återgå till ärendelistan?')) {
+                showToast('Du loggas ut från ärendet. (I en riktig applikation skickas du till ärendelistan)');
+            }
+        });
+    }
+
+    const steps = [
+        'index.html',
+        'kundinformation.html',
+        'laneansokan.html',
+        'engagemang.html',
+        'policykontroll-1.html',
+        'sakerheter.html',
+        'policykontroll-2.html',
+        'uppsummering-och-risk.html',
+        'beslut.html',
+        'dokument.html',
+        'avslut.html'
+    ];
+
+    const currentPathname = window.location.pathname;
+    const currentFile = currentPathname.substring(currentPathname.lastIndexOf('/') + 1) || 'index.html';
+    const currentIndex = steps.indexOf(currentFile);
+
+    if (btnPrevStep) {
+        if (currentIndex <= 0) {
+            btnPrevStep.disabled = true;
+            btnPrevStep.style.opacity = '0.5';
+            btnPrevStep.style.cursor = 'not-allowed';
+        } else {
+            btnPrevStep.addEventListener('click', () => {
+                window.location.href = steps[currentIndex - 1];
+            });
+        }
+    }
+
+    if (btnNextStep) {
+        if (currentIndex === -1 || currentIndex >= steps.length - 1) {
+            btnNextStep.disabled = true;
+            btnNextStep.style.opacity = '0.5';
+            btnNextStep.style.cursor = 'not-allowed';
+        } else {
+            btnNextStep.addEventListener('click', () => {
+                window.location.href = steps[currentIndex + 1];
+            });
+        }
+    }
+
+    // 8. Edit / Read-Only Mode Toggle (Kundinformation)
+    const btnToggleEdit = document.getElementById('btn-toggle-edit');
+    let isEditMode = false; // Default to read-only for now, but can be changed based on status
+
+    if (btnToggleEdit) {
+        btnToggleEdit.addEventListener('click', () => {
+            isEditMode = !isEditMode;
+            
+            const detailItems = document.querySelectorAll('.detail-item');
+            
+            if (isEditMode) {
+                // Switch to Edit Mode
+                document.body.classList.add('is-edit-mode');
+                btnToggleEdit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg> Spara Ändringar`;
+                btnToggleEdit.classList.replace('btn-primary', 'btn-success');
+                btnToggleEdit.style.backgroundColor = 'var(--success)';
+                btnToggleEdit.style.borderColor = 'var(--success)';
+
+                detailItems.forEach(item => {
+                    // Skip if it has a predefined HTML edit-view (handled by CSS .is-edit-mode)
+                    if (item.querySelector('.edit-view')) return;
+
+                    const valueSpan = item.querySelector('.detail-value');
+                    if (!valueSpan) return;
+                    
+                    // Don't convert complex lists/HTML for this simple PoC, just text
+                    if (valueSpan.querySelector('ul') || valueSpan.querySelector('button') || valueSpan.querySelector('svg')) return;
+
+                    const isEmpty = valueSpan.classList.contains('empty-state');
+                    const currentValue = isEmpty ? '' : valueSpan.textContent.trim();
+                    
+                    valueSpan.style.display = 'none';
+                    
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'edit-input auto-generated';
+                    if (isEmpty) input.classList.add('empty-input');
+                    input.value = currentValue;
+                    input.placeholder = 'Skriv in värde...';
+                    
+                    item.appendChild(input);
+                });
+            } else {
+                // Switch back to Read-Only Mode
+                document.body.classList.remove('is-edit-mode');
+                btnToggleEdit.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg> Redigera Kund`;
+                btnToggleEdit.classList.replace('btn-success', 'btn-primary');
+                btnToggleEdit.style.backgroundColor = 'var(--primary-dark)';
+                btnToggleEdit.style.borderColor = 'var(--primary-dark)';
+
+                detailItems.forEach(item => {
+                    // Sync predefined HTML edit-views
+                    if (item.querySelector('.edit-view')) {
+                        const readOnlyView = item.querySelector('.read-only-view');
+                        const fieldType = item.dataset.fieldType;
+                        let newValue = '';
+
+                        if (fieldType === 'radio') {
+                            const checkedRadio = item.querySelector('input[type="radio"]:checked');
+                            newValue = checkedRadio ? checkedRadio.value : '';
+                        } else if (fieldType === 'checkbox') {
+                            const checkbox = item.querySelector('input[type="checkbox"]');
+                            newValue = checkbox.checked ? 'Ja' : 'Nej';
+                        } else {
+                            const editInput = item.querySelector('.edit-input');
+                            if (editInput) newValue = editInput.value.trim();
+                        }
+
+                        if (readOnlyView) {
+                            if (newValue === '') {
+                                readOnlyView.textContent = '— Ej angivet —';
+                                readOnlyView.classList.add('empty-state');
+                            } else {
+                                readOnlyView.textContent = newValue;
+                                readOnlyView.classList.remove('empty-state');
+                            }
+                        }
+                        return;
+                    }
+
+                    // Sync auto-generated text inputs
+                    const valueSpan = item.querySelector('.detail-value');
+                    const input = item.querySelector('.edit-input.auto-generated');
+                    
+                    if (valueSpan && input) {
+                        const newValue = input.value.trim();
+                        
+                        if (newValue === '') {
+                            valueSpan.textContent = '— Ej angivet —';
+                            valueSpan.classList.add('empty-state');
+                        } else {
+                            valueSpan.textContent = newValue;
+                            valueSpan.classList.remove('empty-state');
+                        }
+                        
+                        valueSpan.style.display = ''; // Restore default display
+                        input.remove();
+                    }
+                });
+                
+                showToast('Kundinformationen har sparats.');
+            }
+        });
+    }
 }

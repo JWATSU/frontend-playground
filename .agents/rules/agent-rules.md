@@ -8,3 +8,4 @@ trigger: always_on
 
 CSS rules for styles.css
 - Avoid using !important unless absolutely necessary and appropriate. Refactor existing classes to not use it if possible.
+- Only use inline styles if appropriate.

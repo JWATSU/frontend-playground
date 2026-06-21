@@ -15,6 +15,12 @@ För att säkerställa en enhetlig användarupplevelse på allt från 24" skärm
 *   **Låst rullning på Desktop (No Page Scroll)**: På skärmar $\ge$ 1300px är viewporten låst till `100vh`. Ingen global rullning tillåts. Istället använder enskilda kort i gränssnittet intern rullning (`overflow-y: auto`) med skräddarsydda tunna scrollbars.
 *   **Responsiv Stapling**: Om skärmbredden understiger 1300px staplas korten automatiskt i en kolumn för att förhindra textspill och trängsel.
 
+### Default States: Edit vs Read-Only
+Gränssnittet tillämpar ett kontextmedvetet beteende gällande redigerbarhet:
+* **Sidor med status TODO:** Öppnas automatiskt i **Edit-mode** eftersom den primära åtgärden är att mata in ny data. Handläggaren kan dock manuellt växla till skrivskyddat läge.
+* **Sidor med status DONE:** Öppnas automatiskt i **Read-only-mode** för att skydda ifylld data och maximera läsbarheten. Handläggaren kan klicka på "Redigera" för att tillfälligt låsa upp fälten.
+* **Tomma fält i Read-only:** Fält som saknar värde ska visas med en "Explicit saknad"-platshållare (t.ex. *— Ej angivet —*) i ljusgrå kursiv stil för att tydligt signalera att data saknas, snarare än att visa ett helt tomt fält.
+
 ---
 
 ## 📂 Ärendesteg (Processförlopp)
