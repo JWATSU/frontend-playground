@@ -46,7 +46,15 @@ async function loadFragments() {
                 const links = newEl.querySelectorAll('.sidebar-link');
                 links.forEach(link => {
                     const href = link.getAttribute('href');
-                    if (href === pageName) {
+                    let isActive = (href === pageName);
+                    
+                    // Special case for Kundinformation sub-pages
+                    if (href === 'limitgrupp.html' && 
+                        ['kunddetaljer.html', 'skapa-andra-hushall.html'].includes(pageName)) {
+                        isActive = true;
+                    }
+                    
+                    if (isActive) {
                         link.classList.add('active');
                     } else {
                         link.classList.remove('active');
@@ -91,6 +99,7 @@ async function loadFragments() {
                 const breadcrumb = headerPlaceholder.getAttribute('data-breadcrumb');
                 const statusText = headerPlaceholder.getAttribute('data-status-text');
                 const statusClass = headerPlaceholder.getAttribute('data-status-class');
+                const parentStep = headerPlaceholder.getAttribute('data-parent-step');
                 
                 if (title) {
                     const titleEl = newEl.querySelector('#header-title');
@@ -108,6 +117,31 @@ async function loadFragments() {
                             statusPill.className = `status-pill ${statusClass}`;
                         }
                     }
+                }
+                
+                const btnUpStep = newEl.querySelector('#btn-up-step');
+                if (btnUpStep) {
+                    if (parentStep) {
+                        btnUpStep.style.display = 'inline-flex';
+                        btnUpStep.addEventListener('click', () => {
+                            window.location.href = parentStep;
+                        });
+                    } else {
+                        btnUpStep.style.display = 'none';
+                    }
+                }
+                
+                // Process subnav tabs
+                const subnavItems = headerPlaceholder.querySelector('#header-subnav-items');
+                if (subnavItems) {
+                    const tabsContainer = newEl.querySelector('#header-tabs-container');
+                    if (tabsContainer) {
+                        tabsContainer.style.display = 'flex';
+                        while (subnavItems.firstChild) {
+                            tabsContainer.appendChild(subnavItems.firstChild);
+                        }
+                    }
+                    subnavItems.remove(); // Prevent it from being copied to actions
                 }
                 
                 // Copy any page-specific buttons/actions from the placeholder into the header actions container
@@ -493,7 +527,8 @@ function initAppBehaviors() {
 
     const steps = [
         'index.html',
-        'kundinformation.html',
+        'limitgrupp.html',
+        'kunddetaljer.html',
         'laneansokan.html',
         'engagemang.html',
         'policykontroll-1.html',

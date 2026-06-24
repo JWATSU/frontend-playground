@@ -19,15 +19,44 @@ const SIDEBAR_FRAGMENT = `
 
     <!-- Active Case Widget -->
     <div class="sidebar-case-summary">
-        <div class="case-label">Aktivt Ärende</div>
-        <div class="case-id">
-            #482910
-            <button class="copy-btn" id="btn-copy-case-id" title="Kopiera ärendenummer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            </button>
+        <div class="case-label">Ärendeinformation</div>
+        
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.4rem; font-size: 0.8rem; margin-bottom: 1.25rem;">
+            <div style="color: rgba(255,255,255,0.6);">Ärendet startat:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-06-01</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Giltigt till:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-07-01</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Status:</div>
+            <div style="color: var(--warning); text-align: right; font-weight: 500;">Under utredning</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Ärendenummer:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500; display: flex; align-items: center; justify-content: flex-end; gap: 0.3rem;">
+                #482910
+                <button class="copy-btn" id="btn-copy-case-id" title="Kopiera ärendenummer" style="margin-left: 0; padding: 0; display: flex; align-items: center; color: var(--primary-highlight);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Ärendets ägare:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">Erik Bergström</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Senast ändrat:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-06-24</div>
         </div>
-        <div class="customer-name">Johan Andersson</div>
-        <div class="loan-amount">3 450 000 SEK</div>
+
+        <div class="case-label">Huvudsökande</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.4rem; font-size: 0.8rem;">
+            <div style="color: rgba(255,255,255,0.6);">Personnummer:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">19800101-1234</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Namn:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Johan Andersson</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Typ:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">Fysiker</div>
+        </div>
     </div>
 
     <!-- Navigation Menu -->
@@ -46,8 +75,8 @@ const SIDEBAR_FRAGMENT = `
 
         <div class="menu-section-title" style="margin-top: 1.5rem;">Ärendesteg</div>
         <ul class="sidebar-list">
-            <li>
-                <a href="kundinformation.html" class="sidebar-link" data-title="Kundinformation">
+            <li class="has-hover-submenu">
+                <a href="limitgrupp.html" class="sidebar-link" data-title="Kundinformation">
                     <span class="step-icon-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     </span>
@@ -56,6 +85,10 @@ const SIDEBAR_FRAGMENT = `
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                 </a>
+                <div class="hover-submenu">
+                    <a href="limitgrupp.html" class="hover-submenu-link">Limitgrupp</a>
+                    <a href="kunddetaljer.html" class="hover-submenu-link">Kunddetaljer</a>
+                </div>
             </li>
             <li>
                 <a href="laneansokan.html" class="sidebar-link" data-title="Låneansökan">
@@ -218,34 +251,40 @@ const SIDEBAR_FRAGMENT = `
 `;
 
 const HEADER_FRAGMENT = `
-<header class="case-top-header">
-    <div class="header-left">
-        <div class="breadcrumbs">
-            <a href="index.html">Ärenden</a>
-            <span class="separator">/</span>
-            <span class="current" id="header-breadcrumb-current">Ärende #482910</span>
+<header class="case-top-header" style="display: flex; flex-direction: column; align-items: stretch; padding-bottom: 0.5rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div class="header-left">
+            <div class="breadcrumbs">
+                <a href="index.html">Ärenden</a>
+                <span class="separator">/</span>
+                <span class="current" id="header-breadcrumb-current">Ärende #482910</span>
+            </div>
+            <div class="case-title-row">
+                <h1 id="header-title">Ärendeöversikt</h1>
+                <span class="status-pill under-review" id="header-status-pill">
+                    <span class="status-indicator-dot"></span>
+                    Under utredning
+                </span>
+            </div>
         </div>
-        <div class="case-title-row">
-            <h1 id="header-title">Ärendeöversikt</h1>
-            <span class="status-pill under-review" id="header-status-pill">
-                <span class="status-indicator-dot"></span>
-                Under utredning
-            </span>
+        <!-- Action Controls -->
+        <div class="header-actions" id="header-actions-container">
+            <button class="btn btn-secondary btn-icon" id="btn-up-step" title="Gå till överordnat steg" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+            </button>
+            <button class="btn btn-secondary btn-icon" id="btn-prev-step" title="Föregående steg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </button>
+            <button class="btn btn-primary btn-icon" id="btn-next-step" title="Nästa steg">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+            <div style="width: 1px; height: 24px; background-color: var(--border-color); margin: 0 0.5rem;"></div>
+            <button class="btn btn-secondary btn-icon" id="btn-close-case" title="Stäng ärende">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+            </button>
         </div>
     </div>
-    <!-- Action Controls -->
-    <div class="header-actions" id="header-actions-container">
-        <button class="btn btn-secondary btn-icon" id="btn-prev-step" title="Föregående steg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-        </button>
-        <button class="btn btn-primary btn-icon" id="btn-next-step" title="Nästa steg">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-        </button>
-        <div style="width: 1px; height: 24px; background-color: var(--border-color); margin: 0 0.5rem;"></div>
-        <button class="btn btn-secondary btn-icon" id="btn-close-case" title="Stäng ärende">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-        </button>
-    </div>
+    <div id="header-tabs-container" class="header-tabs" style="display: none;"></div>
 </header>
 `;
 

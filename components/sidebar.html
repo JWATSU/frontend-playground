@@ -12,15 +12,44 @@
 
     <!-- Active Case Widget -->
     <div class="sidebar-case-summary">
-        <div class="case-label">Aktivt Ärende</div>
-        <div class="case-id">
-            #482910
-            <button class="copy-btn" id="btn-copy-case-id" title="Kopiera ärendenummer">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            </button>
+        <div class="case-label">Ärendeinformation</div>
+        
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.4rem; font-size: 0.8rem; margin-bottom: 1.25rem;">
+            <div style="color: rgba(255,255,255,0.6);">Ärendet startat:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-06-01</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Giltigt till:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-07-01</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Status:</div>
+            <div style="color: var(--warning); text-align: right; font-weight: 500;">Under utredning</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Ärendenummer:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500; display: flex; align-items: center; justify-content: flex-end; gap: 0.3rem;">
+                #482910
+                <button class="copy-btn" id="btn-copy-case-id" title="Kopiera ärendenummer" style="margin-left: 0; padding: 0; display: flex; align-items: center; color: var(--primary-highlight);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                </button>
+            </div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Ärendets ägare:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">Erik Bergström</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Senast ändrat:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">2026-06-24</div>
         </div>
-        <div class="customer-name">Johan Andersson</div>
-        <div class="loan-amount">3 450 000 SEK</div>
+
+        <div class="case-label">Huvudsökande</div>
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 0.4rem; font-size: 0.8rem;">
+            <div style="color: rgba(255,255,255,0.6);">Personnummer:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">19800101-1234</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Namn:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Johan Andersson</div>
+            
+            <div style="color: rgba(255,255,255,0.6);">Typ:</div>
+            <div style="color: rgba(255,255,255,0.9); text-align: right; font-weight: 500;">Fysiker</div>
+        </div>
     </div>
 
     <!-- Navigation Menu -->
@@ -39,8 +68,8 @@
 
         <div class="menu-section-title mt-4">Ärendesteg</div>
         <ul class="sidebar-list">
-            <li>
-                <a href="kundinformation.html" class="sidebar-link" data-title="Kundinformation">
+            <li class="has-hover-submenu">
+                <a href="limitgrupp.html" class="sidebar-link" data-title="Kundinformation">
                     <span class="step-icon-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                     </span>
@@ -49,6 +78,10 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     </span>
                 </a>
+                <div class="hover-submenu">
+                    <a href="limitgrupp.html" class="hover-submenu-link">Limitgrupp</a>
+                    <a href="kunddetaljer.html" class="hover-submenu-link">Kunddetaljer</a>
+                </div>
             </li>
             <li>
                 <a href="laneansokan.html" class="sidebar-link" data-title="Låneansökan">
